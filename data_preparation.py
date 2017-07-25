@@ -29,7 +29,7 @@ if __name__ == '__main__':
 
     _, _file, mode, savemode = argv
     savemode = str(savemode)
-
+    target_size = (299, 299)
     assert (os.path.exists(_file))
     assert(savemode in ['h5', 'pkl'])
 
@@ -47,10 +47,10 @@ if __name__ == '__main__':
 
     n = inData.shape[0]
     inputImages = inData['ImageFile'].tolist()
-    imageData = np.zeros((n, 299, 299, 3)) # image data array
+    imageData = np.zeros((n, target_size[0], target_size[1], 3)) # image data array
     inputImages = map(lambda f: os.path.join(imgSrc, f), inputImages)
     for i, _image in enumerate(inputImages):
-        x = prepare_image(_image, spp=False)
+        x = prepare_image(_image, target_size)
         imageData[i, :, :, :] = x
         if (i + 1) % 100 == 0:
             print i, _image, x.shape
