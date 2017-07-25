@@ -4,7 +4,7 @@ from keras.layers import Flatten, Dropout, Lambda, GlobalAveragePooling2D, merge
 from keras.models import Model
 import keras.backend as K
 #from keras.utils.visualize_util import plot
-from SpatialPyramidPooling import SpatialPyramidPooling
+#from SpatialPyramidPooling import SpatialPyramidPooling
 
 
 def l2_normalize(x):
