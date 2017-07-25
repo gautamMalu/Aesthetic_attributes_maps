@@ -43,7 +43,7 @@ def squared_root_normalization_output_shape(input_shape):
 
 def model1(weights_path=None):
     '''
-    ResNet-FT
+    Basic ResNet-FT for baseline comparisions.
     Creates a model by for all aesthetic attributes along
     with overall aesthetic score, by finetuning resnet50
     :param weights_path: path of the weight file
@@ -53,7 +53,6 @@ def model1(weights_path=None):
     resnet = ResNet50(include_top=False, weights='imagenet', input_tensor=_input)
 
     last_layer_output = GlobalAveragePooling2D()(resnet.get_layer('activation_49').output)
-  #  last_layer_output = Flatten()(last_layer_output)
 
     # output of model
     outputs = []
@@ -79,6 +78,7 @@ def model2(weights_path=None):
     with overall aesthetic score
     :param weights_path: path of the weight file
     :return: Keras model instance
+    This is the model used in the paper
     '''
     _input = Input(shape=(299, 299, 3))
     resnet = ResNet50(include_top=False, weights='imagenet', input_tensor=_input)

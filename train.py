@@ -30,14 +30,15 @@ def get_session(gpu_fraction=0.75):
         return tf.Session(config=tf.ConfigProto(gpu_options=gpu_options))
 
 if __name__ == '__main__':
- #   KTF.set_session(get_session())
+   # KTF.set_session(get_session())
+   # usage: python train.py input_params.json
     _, params_file = argv
     with open(params_file, 'r') as fp:
         params = json.load(fp)
     print params
     nb_epoch = params['nb_epoch']
     initial_epoch = params['initial_epoch']
-    # first 0.9 then 0.5 
+  
     base_lr = params['base_lr']
     print 'starting training for {} epoch with initial epoch number: {}'.format(nb_epoch, initial_epoch)
     batch_size = params['batch_size']

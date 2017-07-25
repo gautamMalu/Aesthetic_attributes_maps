@@ -24,20 +24,24 @@ def get_session(gpu_fraction=0.6):
 
 
 if __name__ == '__main__': 
-#    KTF.set_session(get_session())
-    # mode = on which data we are testing     
+    #KTF.set_session(get_session())
+    # mode = on which data we are testing  
+    #usage: python test_report.py test weights-improvement__016-0.022715.hdf5 64
+    # Usually we get better results with bigger batch size, This might due to presence of
+    # batch normalization layers in resenets
     _, mode, weights_file, batch_size = argv
     batch_size = int(batch_size)
     mode = str(mode)
     assert (exists(weights_file))
+    #get the ground truth data
     if mode == 'train':
-        _file = '../data/testing/train.pkl'
+        _file = '../data/train.pkl'
         gt_file = 'imgListTrainRegression_.csv'
     elif mode == 'val':
-        _file = '../data/testing/val.pkl'
+        _file = '../data/val.pkl'
         gt_file = 'imgListValidationRegression_.csv'
     else:
-        _file = '../data/testing/test.pkl'
+        _file = '../data/test.pkl'
         gt_file = 'imgListTestNewRegression_.csv'
 
     assert(exists(_file))
